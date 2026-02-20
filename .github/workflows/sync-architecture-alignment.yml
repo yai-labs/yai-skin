@@ -18,7 +18,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR head
+      - name: Checkout target ref
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -36,7 +36,21 @@ jobs:
       - name: Regenerate architecture alignment snapshot
         run: node ./scripts/sync-architecture-alignment.mjs --write
 
-      - name: Auto-commit generated updates
+      - name: Validate generated snapshot is up to date (PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          if git diff --quiet -- docs/_generated/architecture-alignment.v1.json; then
+            echo "Generated snapshot is up to date."
+            exit 0
+          fi
+
+          echo "Generated snapshot is out of date. Run locally:" >&2
+          echo "node ./scripts/sync-architecture-alignment.mjs --write" >&2
+          git --no-pager diff -- docs/_generated/architecture-alignment.v1.json >&2
+          exit 1
+
+      - name: Auto-commit generated updates (manual only)
+        if: github.event_name == 'workflow_dispatch'
         run: |
           if git diff --quiet -- docs/_generated/architecture-alignment.v1.json; then
             echo "No generated changes to commit."

@@ -16,7 +16,6 @@ const imports = raw
 
 const data = {
   version: 1,
-  generatedAt: new Date().toISOString(),
   entrypoint: "index.css",
   imports,
   policy: ["reset", "tokens", "base", "components", "themes", "utilities"]

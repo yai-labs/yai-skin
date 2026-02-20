@@ -1,0 +1,19 @@
+name: validate-runbook-adr-links
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/validate-runbook-adr-links.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate internal docs links
+        run: node ./scripts/validate-doc-links.mjs

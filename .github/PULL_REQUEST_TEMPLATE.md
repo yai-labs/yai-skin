@@ -1,19 +1,26 @@
 ## Context
 
+Issue-ID: #<number or N/A>
+Issue-Reason: <required if Issue-ID is N/A>
+Change-Type: <feat|fix|docs|chore|refactor|ci>
+SemVer-Impact: <none|patch|minor|major>
+Risk-Level: <low|medium|high>
+
 ## What Changed
 
 ## Why
 
-## Verification
-- [ ] `npm ci`
-- [ ] `npm run lint`
-- [ ] `npm run build`
-- [ ] `npm run typecheck`
-- [ ] `npm run pack:check`
+## Evidence
+- Positive:
+- Negative:
 
-### Commands Run
+## Commands run
 ```bash
-# paste commands here
+npm ci
+npm run lint
+npm run build
+npm run typecheck
+npm run pack:check
 ```
 
 ## Package Contract Alignment

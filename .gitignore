@@ -3,3 +3,6 @@ dist
 .DS_Store
 
 *.tgz
+
+# Local PR drafts
+.pr/

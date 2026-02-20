@@ -18,7 +18,7 @@ jobs:
           script: |
             const body = context.payload.pull_request.body || "";
             const hasClosingRef = /\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+#\d+\b/i.test(body);
-            const reason = (body.match(/Issue-Reason\s*:\s*([^\n\r]+)/i) || [])[1] || "";
+            const reason = (body.match(/Issue-Reason(?:\s*\([^\)]*\))?\s*:\s*([^\n\r]+)/i) || [])[1] || "";
             const hasReason = reason.trim().length > 0 && !/^N\/A$/i.test(reason.trim());
             if (!hasClosingRef && !hasReason) {
               core.setFailed("PR must include Closes/Fixes/Resolves #<issue> or non-empty Issue-Reason:.");

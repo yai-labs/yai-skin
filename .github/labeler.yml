@@ -1,0 +1,28 @@
+type:ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+          - 'scripts/**'
+
+type:docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**'
+          - 'README.md'
+          - 'CHANGELOG.md'
+          - 'CONTRIBUTING.md'
+
+type:tokens:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tokens/**'
+
+type:components:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'components/**'
+
+type:base:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'base/**'

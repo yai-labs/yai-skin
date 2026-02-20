@@ -1,0 +1,27 @@
+name: validate-traceability
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'index.css'
+      - 'base/**'
+      - 'components/**'
+      - 'tokens/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-traceability.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  traceability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node ./scripts/sync-architecture-alignment.mjs --check

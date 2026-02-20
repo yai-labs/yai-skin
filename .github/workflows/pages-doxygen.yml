@@ -1,0 +1,55 @@
+name: pages-doxygen
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build lightweight docs site
+        run: |
+          mkdir -p dist/docs
+          cat > dist/docs/index.html <<'HTML'
+          <!doctype html>
+          <html><head><meta charset="utf-8"><title>yai-skin docs</title></head>
+          <body>
+            <h1>yai-skin docs</h1>
+            <ul>
+              <li><a href="https://github.com/${GITHUB_REPOSITORY}/blob/main/README.md">README</a></li>
+              <li><a href="https://github.com/${GITHUB_REPOSITORY}/blob/main/docs/architecture.md">Architecture</a></li>
+              <li><a href="https://github.com/${GITHUB_REPOSITORY}/blob/main/docs/release.md">Release</a></li>
+              <li><a href="https://github.com/${GITHUB_REPOSITORY}/blob/main/CHANGELOG.md">Changelog</a></li>
+            </ul>
+          </body></html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

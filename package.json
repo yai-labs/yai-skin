@@ -1,0 +1,23 @@
+{
+  "name": "@yai-labs/yai-skin",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.css",
+  "files": [
+    "base",
+    "components",
+    "tokens",
+    "index.css"
+  ],
+  "scripts": {
+    "lint": "node ./scripts/lint-css-entrypoint.mjs",
+    "typecheck": "node ./scripts/validate-package.mjs",
+    "build": "npm pack --dry-run > /dev/null",
+    "pack:check": "node ./scripts/smoke-pack.mjs",
+    "release:check": "node ./scripts/verify-release-tag.mjs",
+    "pr:body": "node ./scripts/generate-pr-body.mjs",
+    "pr:body:apply": "node ./scripts/generate-pr-body.mjs --apply",
+    "pins:check": "node ./scripts/check-consumer-pins.mjs",
+    "pins:check:strict": "STRICT_CONSUMER_PINS=1 node ./scripts/check-consumer-pins.mjs"
+  }
+}

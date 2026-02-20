@@ -1,0 +1,40 @@
+name: validate-changelog
+
+on:
+  pull_request:
+    paths:
+      - 'CHANGELOG.md'
+      - 'VERSION'
+      - 'index.css'
+      - 'base/**'
+      - 'components/**'
+      - 'tokens/**'
+      - 'docs/**'
+      - '.github/workflows/**'
+      - 'scripts/**'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changelog-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Changelog gate
+        run: |
+          set -euo pipefail
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.sha }}"
+          changed="$(git diff --name-only "$BASE" "$HEAD")"
+          if echo "$changed" | grep -Eq '^(index.css|base/|components/|tokens/|package.json|scripts/)'; then
+            if ! echo "$changed" | grep -q '^CHANGELOG.md$'; then
+              echo "CHANGELOG.md must be updated when library behavior/package files change."
+              exit 1
+            fi
+          fi
+          echo "changelog validation OK"

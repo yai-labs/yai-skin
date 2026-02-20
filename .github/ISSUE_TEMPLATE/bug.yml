@@ -1,0 +1,65 @@
+name: Bug report
+description: Something in skin behavior or packaging is broken.
+title: "bug: <short description>"
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - tokens
+        - base
+        - components
+        - themes
+        - packaging
+        - docs/governance
+        - CI
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      placeholder: "Observed behavior, errors, screenshots, or logs."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      placeholder: "Expected behavior."
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1) ...
+        2) ...
+        3) ...
+        Commands:
+        ```bash
+        npm ci
+        npm run lint
+        npm run build
+        npm run typecheck
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment (optional)
+      placeholder: |
+        OS:
+        Node:
+        npm:
+        Commit:
+    validations:
+      required: false

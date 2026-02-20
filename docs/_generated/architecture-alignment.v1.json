@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "entrypoint": "index.css",
+  "imports": [
+    "./base/reset.css",
+    "./tokens/colors.semantic.css",
+    "./tokens/colors.yai-dna.css",
+    "./tokens/spacing.css",
+    "./tokens/typography.css",
+    "./base/layout.css",
+    "./base/topbar.css",
+    "./components/buttons.css",
+    "./components/cards.css",
+    "./components/forms.css",
+    "./components/modal.css",
+    "./tokens/themes/theme-dark.css",
+    "./tokens/themes/theme-yai.css",
+    "./base/utilities.css"
+  ],
+  "policy": [
+    "reset",
+    "tokens",
+    "base",
+    "components",
+    "themes",
+    "utilities"
+  ]
+}

@@ -1,23 +1,63 @@
-# YX Skin Pack
+# yai-skin
 
-Imported selectively from legacy `yai-skin`.
+Lightweight CSS design-system for YAI frontend surfaces.
 
-Included:
-- base css
-- semantic tokens/themes
-- generic components (buttons/cards/forms/modal)
-- brand master icon and icon generator
+`yai-skin` provides shared visual primitives for consumer repos (for example `yai-yx` and `site`) while keeping governance coherent and intentionally minimal.
 
-Excluded by policy:
-- IDE/workspace/editor/explorer/plugin-dock/terminal css
-- interface layer css
-- electron-specific icons
+## Public API
 
-## Regenerate icons
+Import only the single entrypoint:
 
-```bash
-cd ui/src/skin/icons
-./generate-icons.sh
+```css
+@import "@yai-labs/yai-skin/index.css";
 ```
 
-Generated files are written to `ui/public/icons`.
+Direct imports from internal folders are not part of the public contract.
+
+## Repository structure
+
+- `tokens/`: color, spacing, typography, and theme tokens
+- `base/`: reset and structural layer
+- `components/`: reusable component styles
+- `icons/`: source icon assets + generator helper
+- `shaders/`: optional visual effect assets
+- `docs/`: architecture, governance, CI, release, consumer contract
+- `index.css`: single public entrypoint
+
+## Layering policy
+
+Entrypoint import order is fixed:
+
+1. reset
+2. tokens
+3. base
+4. components
+5. themes
+6. utilities
+
+## Versioning and release
+
+- SemVer: `VERSIONING.md`
+- Current version: `VERSION`
+- Change history: `CHANGELOG.md`
+- Release flow: `docs/release.md`
+
+## Governance and CI
+
+- Contribution process: `CONTRIBUTING.md`
+- Security reporting: `SECURITY.md`
+- Governance model: `docs/governance.md`
+- CI model: `docs/ci.md`
+
+## Consumer integration
+
+- Contract and sync model: `docs/consumers.md`
+- Consumer pin alignment policy: `docs/pins.md`
+
+## Tooling note
+
+- Doxygen guidance for CSS repos: `docs/tooling/doxygen.md`
+
+## License
+
+MIT (`LICENSE`).

@@ -1,0 +1,71 @@
+name: validate-pr-metadata
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR metadata fields and semantics
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || "";
+            const required = [
+              "Issue-ID:",
+              "Change-Type:",
+              "SemVer-Impact:",
+              "Risk-Level:",
+              "## Evidence",
+              "## Commands run"
+            ];
+            const missing = required.filter((k) => !body.includes(k));
+            if (missing.length) {
+              core.setFailed(`Missing required PR fields: ${missing.join(", ")}`);
+              return;
+            }
+
+            const banned = ["<short description>", "TODO", "TBD", "...", "<paste>"];
+            const unresolved = banned.filter((x) => body.includes(x));
+            if (unresolved.length) {
+              core.setFailed(`Unresolved placeholders in PR body: ${unresolved.join(", ")}`);
+              return;
+            }
+
+            const extract = (label) => {
+              const re = new RegExp(`${label}\\s*:\\s*([^\\n\\r]+)`, "i");
+              const m = body.match(re);
+              return m ? m[1].trim() : "";
+            };
+
+            const issue = extract("Issue-ID");
+            if (!/^#\\d+$/.test(issue) && !/^N\/A$/i.test(issue)) {
+              core.setFailed("Issue-ID must be #<number> or N/A.");
+              return;
+            }
+
+            const semver = extract("SemVer-Impact").toLowerCase();
+            if (!["patch", "minor", "major", "none"].includes(semver)) {
+              core.setFailed("SemVer-Impact must be one of: none, patch, minor, major.");
+              return;
+            }
+
+            const risk = extract("Risk-Level").toLowerCase();
+            if (!["low", "medium", "high"].includes(risk)) {
+              core.setFailed("Risk-Level must be one of: low, medium, high.");
+              return;
+            }
+
+            const cmdBlock = body.match(/## Commands run\s*[\s\S]*?```bash\s*([\s\S]*?)```/i);
+            if (!cmdBlock) {
+              core.setFailed("Commands run must include a bash fenced code block.");
+              return;
+            }
+
+            core.info("PR metadata validation passed.");

@@ -1,0 +1,26 @@
+name: validate-architecture-alignment
+
+on:
+  pull_request:
+    paths:
+      - 'index.css'
+      - 'docs/architecture.md'
+      - 'scripts/**'
+      - '.github/workflows/validate-architecture-alignment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-alignment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node ./scripts/lint-css-entrypoint.mjs
+      - run: node ./scripts/sync-architecture-alignment.mjs --check

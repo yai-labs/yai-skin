@@ -1,0 +1,28 @@
+name: validate-consumer-pins
+
+on:
+  pull_request:
+    paths:
+      - 'pins/**'
+      - 'scripts/check-consumer-pins.mjs'
+      - '.github/workflows/validate-consumer-pins.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  consumer-pins:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate consumer pins (advisory)
+        run: npm run pins:check

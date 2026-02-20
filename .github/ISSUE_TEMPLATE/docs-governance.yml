@@ -1,0 +1,43 @@
+name: Docs / Governance change
+description: Update docs, templates, release policy, or governance files.
+title: "docs: <short description>"
+labels: ["docs"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      placeholder: "Why this docs/governance update is needed."
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: Change summary
+      placeholder: |
+        - Added/changed:
+        - Removed/deprecated:
+    validations:
+      required: true
+
+  - type: textarea
+    id: targets
+    attributes:
+      label: Target files
+      placeholder: |
+        docs/...
+        .github/...
+        CHANGELOG.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true

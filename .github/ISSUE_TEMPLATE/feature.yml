@@ -1,0 +1,54 @@
+name: Feature / Improvement
+description: Add or refine tokens/components/themes/docs with clear acceptance.
+title: "feat: <short description>"
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      placeholder: "One sentence: what improves?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope guardrails
+      placeholder: |
+        In scope:
+        - ...
+        Out of scope:
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      placeholder: |
+        SemVer impact: patch | minor | major
+        Notes:
+        - ...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: crossrepo
+    attributes:
+      label: Cross-repo impact
+      options:
+        - label: Requires sync update in yai-yx
+        - label: Requires sync update in site
+        - label: Isolated to yai-skin only

@@ -22,6 +22,24 @@
 - `validate-runbook-adr-links` (adapted for local docs consistency)
 - `validate-agent-pack`
 
+## PR body generator
+
+Use the same flow used in YAI repos to prefill PR body metadata.
+
+```bash
+npm run pr:body
+```
+
+This writes `.pr/PR_BODY.md` from `.github/PULL_REQUEST_TEMPLATE/default.md` and injects `Base-Commit` from `origin/main`.
+
+To also update the open PR body automatically:
+
+```bash
+npm run pr:body:apply
+```
+
+Requires GitHub CLI authentication (`gh auth login`) and an open PR for the current branch.
+
 ## Required status checks suggestion
 
 For branch protection on `main`, require at least:

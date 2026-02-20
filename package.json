@@ -14,6 +14,8 @@
     "typecheck": "node ./scripts/validate-package.mjs",
     "build": "npm pack --dry-run > /dev/null",
     "pack:check": "node ./scripts/smoke-pack.mjs",
-    "release:check": "node ./scripts/verify-release-tag.mjs"
+    "release:check": "node ./scripts/verify-release-tag.mjs",
+    "pr:body": "node ./scripts/generate-pr-body.mjs",
+    "pr:body:apply": "node ./scripts/generate-pr-body.mjs --apply"
   }
 }

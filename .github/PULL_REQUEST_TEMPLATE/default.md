@@ -1,5 +1,3 @@
-> Default template for `yai-skin` pull requests.
-
 ## IDs
 - Issue-ID: #<issue-number-or-N/A>
 - Issue-Reason (required if N/A): <required when Issue-ID is N/A>

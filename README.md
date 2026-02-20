@@ -21,7 +21,7 @@ Direct imports from internal folders are not part of the public contract.
 - `components/`: reusable component styles
 - `icons/`: source icon assets + generator helper
 - `shaders/`: optional visual effect assets
-- `docs/`: architecture and release documentation
+- `docs/`: architecture, governance, CI, release, consumer contract
 - `index.css`: single public entrypoint
 
 ## Layering policy
@@ -37,16 +37,25 @@ Entrypoint import order is fixed:
 
 ## Versioning and release
 
-- SemVer: see `VERSIONING.md`
+- SemVer: `VERSIONING.md`
 - Current version: `VERSION`
 - Change history: `CHANGELOG.md`
 - Release flow: `docs/release.md`
 
-## Governance
+## Governance and CI
 
 - Contribution process: `CONTRIBUTING.md`
 - Security reporting: `SECURITY.md`
-- Community expectations: `CODE_OF_CONDUCT.md`
+- Governance model: `docs/governance.md`
+- CI model: `docs/ci.md`
+
+## Consumer integration
+
+- Contract and sync model: `docs/consumers.md`
+
+## Tooling note
+
+- Doxygen guidance for CSS repos: `docs/tooling/doxygen.md`
 
 ## License
 

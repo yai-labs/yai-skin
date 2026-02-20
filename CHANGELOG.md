@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 The format is inspired by Keep a Changelog.
 
+## [Unreleased]
+### Changed
+- Start infra cutover increment: add reusable `verify` workflow via `yai-infra@v0.1.0-rc1` and `scripts/yai-govern` compatibility wrapper.
+
 ## [0.1.0] - 2026-02-20
 ### Added
 - Initial shared `yai-skin` repository extracted from YX skin assets.

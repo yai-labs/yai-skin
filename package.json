@@ -8,5 +8,10 @@
     "components",
     "tokens",
     "index.css"
-  ]
+  ],
+  "scripts": {
+    "lint": "node ./scripts/lint-css-entrypoint.mjs",
+    "typecheck": "node ./scripts/validate-package.mjs",
+    "build": "npm pack --dry-run > /dev/null"
+  }
 }

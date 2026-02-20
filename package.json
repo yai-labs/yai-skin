@@ -16,6 +16,8 @@
     "pack:check": "node ./scripts/smoke-pack.mjs",
     "release:check": "node ./scripts/verify-release-tag.mjs",
     "pr:body": "node ./scripts/generate-pr-body.mjs",
-    "pr:body:apply": "node ./scripts/generate-pr-body.mjs --apply"
+    "pr:body:apply": "node ./scripts/generate-pr-body.mjs --apply",
+    "pins:check": "node ./scripts/check-consumer-pins.mjs",
+    "pins:check:strict": "STRICT_CONSUMER_PINS=1 node ./scripts/check-consumer-pins.mjs"
   }
 }

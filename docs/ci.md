@@ -6,7 +6,7 @@
 
 - `CI`: install + lint + build + typecheck.
 - `Package Smoke`: validates entrypoint/metadata and tarball content.
-- `Release Guard`: validates tag/version and package consistency for releases.
+- `Release Guard`: validates tag/version, package consistency, and strict consumer pin alignment for release events.
 
 ## Governance checks
 
@@ -18,9 +18,15 @@
 ## Docs/structure checks
 
 - `validate-architecture-alignment`
+- `sync-architecture-alignment`
 - `validate-traceability`
 - `validate-runbook-adr-links` (adapted for local docs consistency)
 - `validate-agent-pack`
+
+## Pin alignment checks
+
+- `validate-consumer-pins`: advisory check for pin lock/config changes.
+- strict consumer pin enforcement runs in `Release Guard`.
 
 ## PR body generator
 

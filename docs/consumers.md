@@ -22,8 +22,23 @@ Do not import internal files from `base/`, `components/`, `tokens/` directly.
 
 - Consumers pin a commit/tag (or package version).
 - Upgrades are explicit and validated in the consumer repo.
+- Producer-side lock for alignment lives in `pins/consumers.lock.json`.
 
 ## Current consumers
 
-- `yai-yx` (via submodule path `ui/src/skin`)
-- `site` (via submodule path `src/skin`)
+- `yai-yx` (submodule `ui/src/skin`)
+- `site` (submodule `src/skin`)
+
+## Pin validation
+
+From `yai-skin` run:
+
+```bash
+npm run pins:check
+```
+
+For release-level enforcement:
+
+```bash
+npm run pins:check:strict
+```

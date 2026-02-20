@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skinRepository": "https://github.com/yai-labs/yai-skin.git",
+  "consumers": [
+    {
+      "id": "site",
+      "enabled": true,
+      "repo": "https://github.com/francescomaiomascio/site.git",
+      "branch": "main",
+      "submodulePath": "src/skin",
+      "localPathHint": "site"
+    },
+    {
+      "id": "yai-yx",
+      "enabled": true,
+      "repo": "https://github.com/yai-labs/yai-yx.git",
+      "branch": "main",
+      "submodulePath": "ui/src/skin",
+      "localPathHint": "yai-yx"
+    },
+    {
+      "id": "yai-cli",
+      "enabled": false,
+      "repo": "https://github.com/yai-labs/yai-cli.git",
+      "branch": "main",
+      "submodulePath": "TBD",
+      "localPathHint": "yai-cli"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ Lightweight documentation for `yai-skin`, aligned with the YAI ecosystem style a
 - `governance.md`: contribution and policy model for this repo.
 - `ci.md`: workflows and required status checks.
 - `consumers.md`: integration contract for consumer repositories.
+- `pins.md`: consumer pin lock model and validation workflow.
 
 ## Tooling
 

@@ -52,6 +52,7 @@ Entrypoint import order is fixed:
 ## Consumer integration
 
 - Contract and sync model: `docs/consumers.md`
+- Consumer pin alignment policy: `docs/pins.md`
 
 ## Tooling note
 

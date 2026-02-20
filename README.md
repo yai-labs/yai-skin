@@ -1,38 +1,23 @@
-# yai-skin
+# YX Skin Pack
 
-Lightweight CSS design-system repository for YAI visual surfaces.
+Imported selectively from legacy `yai-skin`.
 
-## Scope
+Included:
+- base css
+- semantic tokens/themes
+- generic components (buttons/cards/forms/modal)
+- brand master icon and icon generator
 
-`yai-skin` provides shared styling primitives and themes for consumers such as `yai-yx` and `site`.
-It is intentionally lightweight: governance-consistent, but not a core/runtime repository.
+Excluded by policy:
+- IDE/workspace/editor/explorer/plugin-dock/terminal css
+- interface layer css
+- electron-specific icons
 
-## Structure
+## Regenerate icons
 
-- `tokens/`: color, spacing, typography, theme tokens
-- `base/`: reset and layout primitives
-- `components/`: reusable component styles
-- `icons/`: brand assets and icon generation helper
-- `shaders/`: optional visual extras
-- `index.css`: single public entrypoint
-
-## Public API
-
-Import only:
-
-```css
-@import "@yai-labs/yai-skin/index.css";
+```bash
+cd ui/src/skin/icons
+./generate-icons.sh
 ```
 
-Do not import internal layer files directly from consumers.
-
-## Docs
-
-See:
-
-- `docs/architecture.md`
-- `docs/release.md`
-
-## License
-
-MIT (`LICENSE`).
+Generated files are written to `ui/public/icons`.

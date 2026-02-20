@@ -1,22 +1,35 @@
 # Architecture
 
-`yai-skin` is a CSS design-system package with layered composition.
+`yai-skin` is a CSS design-system package with a single public entrypoint and layered internals.
 
-## Layers
+## Goals
 
-- `tokens/`: design tokens (color, spacing, typography, themes).
+- Provide a stable visual contract across YAI frontend surfaces.
+- Keep repository governance light and maintainable.
+- Avoid runtime/tooling complexity.
+
+## Directory model
+
+- `tokens/`: canonical design tokens.
 - `base/`: reset and structural primitives.
-- `components/`: reusable UI component styles.
-- `themes/`: theme variants under `tokens/themes/`.
+- `components/`: reusable component-level styles.
+- `icons/`: source icon assets and generation helpers.
+- `shaders/`: optional visual effect assets.
+- `index.css`: only supported public import.
 
-## Public entrypoint
+## Public contract
 
-`index.css` is the only public entrypoint.
-Consumers should import only `index.css`.
+Consumers should import only:
+
+```css
+@import "@yai-labs/yai-skin/index.css";
+```
+
+Direct imports from internal layer files are unsupported and can break across releases.
 
 ## Import order policy
 
-Recommended and enforced ordering in `index.css`:
+`index.css` must keep this order:
 
 1. reset
 2. tokens
@@ -24,3 +37,11 @@ Recommended and enforced ordering in `index.css`:
 4. components
 5. themes
 6. utilities
+
+This keeps token resolution deterministic and avoids override ambiguity.
+
+## Compatibility expectations
+
+- Token additions: minor release.
+- Token removals/renames: major release.
+- Bugfix-only style adjustments: patch release.
